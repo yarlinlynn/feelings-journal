@@ -2,14 +2,13 @@
 import "./style.css";
 
 // IMPORT COMPONENETS:
+import { LoadingScreen } from "./components/loadingScreen";
 
 // IMPORT FUNCTIONALITY:
 
 document.addEventListener("DOMContentLoaded", () => {
     const app = document.querySelector("#app");
     app.innerHTML = `
-        <section class="bg-[#abc793] flex items-center justify-center w-full h-screen text-4xl">
-            <h1>Today I feel ... |</h1>
-        </section>
+        ${LoadingScreen()}
     `;
 });

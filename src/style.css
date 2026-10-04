@@ -21,4 +21,22 @@
 }
 
 /* REUSABLE COMPONENTS: used when creating reusable classes eg specifi button styling */
-@layer components {}
+@layer components {
+    .text {
+        @apply relative font-medium text-3xl md:text-5xl lg:text-8xl;
+    }
+
+    .animate-text {
+        @apply tracking-[1px] text-white;
+    }
+
+    .typed-cursor {
+        @apply text-3xl font-medium leading-none text-white opacity-100 animate-[blink_0.7s_infinite] md:text-5xl lg:text-8xl;
+    }
+
+    @keyframes blink {
+        50% {
+            opacity: 0;
+        }
+    }
+}
