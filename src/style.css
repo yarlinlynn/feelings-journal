@@ -1,0 +1,24 @@
+
+@import "tailwindcss";
+
+/* DEFINE DESIGN SYSTEM: defines values that Tailwind uses to generate utilities */
+@theme {
+    --font-gamja: "Gamja Flower", sans-serif;;
+}
+
+/* GOBLA DEFAULTS: used when styling raw HTML elements or setting global defaults */
+@layer base {
+    *,
+    *::after,
+    *::before {
+        @apply m-0 p-0 box-border;
+    }
+
+    html,
+    body {
+        @apply h-full overflow-hidden font-gamja;
+    }
+}
+
+/* REUSABLE COMPONENTS: used when creating reusable classes eg specifi button styling */
+@layer components {}
