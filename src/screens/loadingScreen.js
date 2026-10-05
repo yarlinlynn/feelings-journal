@@ -14,7 +14,7 @@ export function LoadingScreen() {
             </div>
 
             <button id="newEntry" type="button"
-                class="text-base m-12 font-medium bg-[#fff] text-[#222] px-6 py-3 rounded-[50px] shadow-[2px_2px_4px_rgba(21,30,8,0.6)] cursor-pointer lg:text-xl hover:bg-transparent hover:border hover:border-white hover:text-white hover:transition-all hover:ease-in"
+                class="text-base m-12 font-medium bg-[#fff] text-[#222] px-6 py-3 rounded-[50px] shadow-[2px_2px_4px_rgba(21,30,8,0.6)] cursor-pointer lg:text-xl"
             >
                 Add New Entry
             </button>
