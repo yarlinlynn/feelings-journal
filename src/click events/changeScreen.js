@@ -1,5 +1,5 @@
 
-import { LoadingScreen } from "../Screens/loadingScreen.js";
+import { LoadingScreen } from "../screens/loadingScreen.js";
 import { EntryFormScreen } from "../screens/entryFormScreen.js";
 import { render } from "../utils/renderScreen.js";
 
