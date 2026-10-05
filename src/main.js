@@ -2,11 +2,11 @@
 import "./style.css";
 
 // IMPORT COMPONENETS:
-import { LoadingScreen } from "./screens/loadingScreen";
-import { EntryFormScreen } from "./screens/entryFormScreen";
+import { LoadingScreen } from "./screens/loadingScreen.js";
+import { EntryFormScreen } from "./screens/entryFormScreen.js";
 
 // IMPORT FUNCTIONALITY:
-import { initTypingAnimation } from "./animations/typingAnimation";
+import { initTypingAnimation } from "./animations/typingAnimation.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const app = document.querySelector("#app");
