@@ -1,4 +1,6 @@
 
+import { emotionButtons } from "../components/emotionBtnContainer.js";
+
 export function EntryFormScreen() {
     return `
         <section aria-labelledby="entry-form-title"
@@ -11,46 +13,9 @@ export function EntryFormScreen() {
                     <legend class="sr-only"> Select from the below emotions how you felt today</legend>
 
                     <div class="flex flex-wrap justify-center gap-4">
-                        <button type="button" class="emotion-btn" aria-label="Satisfied" aria-pressed="false">
-                            <img src="./images/satisfied.png" alt="Satisfied" loading="lazy" />
-                            <p aria-hidden="true">Satisfied</p>
-                        </button>
-
-                        <button type="button" class="emotion-btn" aria-label="Inspired" aria-pressed="false">
-                            <img src="./images/inspired.png" alt="Inspired" loading="lazy" />
-                            <p aria-hidden="true">Inspired</p>
-                        </button>
-
-                        <button type="button" class="emotion-btn" aria-label="Confident" aria-pressed="false">
-                            <img src="./images/confident.png" alt="Confident" loading="lazy" />
-                            <p aria-hidden="true">Confident</p>
-                        </button>
-
-                        <button type="button" class="emotion-btn" aria-label="Optimistic" aria-pressed="false">
-                            <img src="./images/optimistic.png" alt="Optimistic" loading="lazy" />
-                            <p aria-hidden="true">Optimistic</p>
-                        </button>
-
-                        <button type="button" class="emotion-btn" aria-label="Anxious" aria-pressed="false">
-                            <img src="./images/anxious.png" alt="Anxious" loading="lazy" />
-                            <p aria-hidden="true">Anxious</p>
-                        </button>
-
-                        <button type="button" class="emotion-btn" aria-label="Frustrated" aria-pressed="false">
-                            <img src="./images/frustrated.png" alt="Frustrated" loading="lazy" />
-                            <p aria-hidden="true">Frustrated</p>
-                        </button>
-
-                        <button type="button" class="emotion-btn" aria-label="Intimidated" aria-pressed="false">
-                            <img src="./images/intimidated.png" alt="Intimidated" loading="lazy" />
-                            <p aria-hidden="true">Intimidated</p>
-                        </button>
-
-                        <button type="button" class="emotion-btn" aria-label="Dejected" aria-pressed="false">
-                            <img src="./images/dejected.png" alt="Dejected" loading="lazy" />
-                            <p aria-hidden="true">Dejected</p>
-                        </button>
+                        ${emotionButtons()}
                     </div>
+                    
                 </fieldset>
 
                 <div class="mt-20 lg:grid lg:grid-cols-2 lg:gap-4 lg:px-12">
