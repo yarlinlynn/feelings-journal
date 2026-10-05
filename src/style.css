@@ -39,4 +39,28 @@
             opacity: 0;
         }
     }
+
+    button {
+        @apply transition-all duration-300 ease-in-out hover:scale-105 cursor-pointer;
+    }
+
+    .emotion-btn {
+        @apply grid place-content-center gap-1 min-w-[72px] max-h-[72px] py-2 font-semibold rounded-[10px] bg-white/10 text-white border border-white/20 transition-all duration-300 ease-in-out hover:scale-105 backdrop-blur-[10px] cursor-pointer;
+    }
+
+    h2, label { 
+        @apply text-white; 
+    }
+
+    .emotion-btn > img {
+        @apply w-8 h-8 mx-auto;
+    }
+
+    textarea {
+        @apply p-[4px] border-none rounded-[10px] text-[14px] w-full h-[12em] leading-[1.5em] overflow-y-auto resize-none bg-white;
+    }
+
+    textarea:focus, button:focus {
+        outline: #a89bd1;
+    }
 }
