@@ -3,8 +3,8 @@ import { emotionButtons } from "../components/emotionBtnContainer.js";
 
 export function EntryFormScreen() {
     return `
-        <section aria-labelledby="entry-form-title"
-            class="bg-[#a89bd1] flex flex-col items-center justify-center w-full h-screen p-4 text-center" 
+        <section id="form-screen" aria-labelledby="entry-form-title" style="background-color: #a89bd1;"
+            class="flex flex-col items-center justify-center w-full h-screen p-4 text-center transition-colors duration-[400ms] ease-in-out" 
         >
             <h2 class="text-4xl mt-0 mx-auto mb-8">How I felt today?</h2>
 
