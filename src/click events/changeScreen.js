@@ -10,11 +10,14 @@ export function changeScreenClick(app) {
         if(event.target.matches("#newEntry")) {
             render(app, EntryFormScreen);
             changeScreenBackground();
+
+            window.location.hash = "entryForm";
             console.log("new screen");
         }
         if(event.target.matches("#backtoLoadingScreen")) {
             render(app, LoadingScreen);
+            window.location.hash = "";
             console.log("back to loading screen");
         }
-    })
+    });
 }
