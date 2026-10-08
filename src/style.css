@@ -61,7 +61,7 @@
     }
 
     textarea {
-        @apply p-[4px] border-none rounded-[10px] text-[14px] w-full h-[12em] leading-[1.5em] overflow-y-auto resize-none bg-white;
+        @apply p-[4px] border-none rounded-[10px] text-lg w-full mt-4 leading-[1.5em] overflow-y-auto resize-none bg-white;
     }
 
     textarea:focus, button:focus {
