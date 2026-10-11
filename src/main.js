@@ -11,6 +11,7 @@ import { changeScreenClick } from "./click events/changeScreen.js";
 import { changeScreenBackground } from "./click events/changeBackground.js";
 
 import { render } from "./utils/renderScreen.js";
+import { initEntryForm } from "./utils/entryForm.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const app = document.querySelector("#app");
@@ -21,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Restore the screen from the URL hash
     if(window.location.hash === "#entryForm") {
         render(app, EntryFormScreen);
+        initEntryForm();
         changeScreenBackground();
     } else {
         // render loading screen as first screen users see

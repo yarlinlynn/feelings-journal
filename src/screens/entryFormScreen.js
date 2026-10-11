@@ -36,16 +36,7 @@ export function EntryFormScreen() {
     `;
 }
 
-//  <div class="mt-20 lg:grid lg:grid-cols-2 lg:gap-4 lg:px-12">
-                    
-//                     <div class="mt-8">
-//                         <label for="aspirations" class="mb-4 text-3xl text-justify">My aspirations for tomorrow ?</label>
 
-//                         <textarea name="aspirations" id="aspirations" rows="4" cols="48" aria-describedby="aspirationsHint"></textarea>
-
-//                         <p id="aspirationsHint" class="sr-only"> Write about what you hope to accomplish or experience tomorrow. </p>
-//                     </div>
-//                 </div>
 
                 
                     

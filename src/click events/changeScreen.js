@@ -4,11 +4,13 @@ import { EntryFormScreen } from "../screens/entryFormScreen.js";
 
 import { render } from "../utils/renderScreen.js";
 import { changeScreenBackground } from "./changeBackground.js";
+import { initEntryForm } from "../utils/entryForm.js";
 
 export function changeScreenClick(app) {
     app.addEventListener("click", (event) => {
         if(event.target.matches("#newEntry")) {
             render(app, EntryFormScreen);
+            initEntryForm();
             changeScreenBackground();
 
             window.location.hash = "entryForm";

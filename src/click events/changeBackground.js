@@ -21,6 +21,7 @@ export function changeScreenBackground() {
             if (isSelected) { 
                 btn.classList.remove("selected"); // Deselect the button
                 btn.setAttribute("aria-pressed", "false"); // Return to default background 
+                sessionStorage.removeItem("savedSelectedButton");
                 formScreen.style.backgroundColor = defaultColor; return; 
             }
             buttons.forEach((button) => { 
@@ -30,6 +31,7 @@ export function changeScreenBackground() {
             
             btn.classList.add("selected"); 
             btn.setAttribute("aria-pressed", "true");
+            sessionStorage.setItem("savedSelectedButton", btn.getAttribute("aria-label"));
             formScreen.style.backgroundColor = color;
         });
     });
