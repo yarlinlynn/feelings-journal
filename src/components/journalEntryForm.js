@@ -22,7 +22,7 @@ export function journalEntryForm() {
                 <!-- Validation message to ensure button is selected before submittion -->
                 <p
                     id="emotionError"
-                    class="validation-error text-red-700 mt-3"
+                    class="validation-error text-red-700 mt-3 text-2xl"
                     role="alert"
                     hidden
                 >
@@ -45,7 +45,7 @@ export function journalEntryForm() {
                 <!-- Validation message to ensure text is entered before submittion -->
                 <p
                     id="thoughtsError"
-                    class="validation-error text-red-700 mt-3"
+                    class="validation-error text-red-700 mt-3 text-2xl"
                     role="alert"
                     hidden
                 >

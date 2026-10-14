@@ -16,7 +16,7 @@
 
     html,
     body {
-        @apply h-full overflow-hidden font-gamja;
+        @apply /*h-auto sm:h-screen*/ font-gamja; 
     }
 }
 
