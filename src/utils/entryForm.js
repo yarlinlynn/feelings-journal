@@ -117,7 +117,7 @@ export function initEntryForm(entrySaved) {
 
             // Navigate to the entries screen after saving.
             if (typeof entrySaved === "function") {
-                journalEntriesScreen();
+                entrySaved();
             }
 
         } catch(error) {
