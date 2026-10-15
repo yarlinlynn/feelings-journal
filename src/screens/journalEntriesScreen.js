@@ -7,6 +7,14 @@ export function journalEntriesScreen() {
 
     return `
         <section id="journal-entries" class="min-h-screen p-6">
+
+            <!-- Navigate back to the entry form. -->
+            <button id="back-to-form" type="button"
+                class="text-base font-semibold px-6 py-3 bg-white text-[#222222] rounded-full shadow mt-4 mb-8"
+            >
+                ← Write another entry
+            </button>
+
             <h1 class="text-4xl mb-6">
                 My Journal Entries
             </h1>

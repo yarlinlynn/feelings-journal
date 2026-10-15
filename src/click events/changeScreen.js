@@ -14,6 +14,14 @@ export function showJournalEntries(app) {
     window.location.hash = "journalEntries"; // Update the URL hash to reflect the current screen
 } 
 
+// Display the entry form and initialize its functionality
+export function showEntryForm(app) {
+    render(app, EntryFormScreen)
+    initEntryForm( () => showEntryForm(app)); // Navigate to the entries screen after a successful save
+    changeScreenBackground(); // Initialize the emotion button background effects
+    window.location.hash = "entryForm";
+}
+
 // Handle navigation to the entry form
 export function changeScreenClick(app) {
     app.addEventListener("click", (event) => {
@@ -24,6 +32,9 @@ export function changeScreenClick(app) {
 
             window.location.hash = "entryForm";
             console.log("new screen");
+        }
+        if(event.target.matches("#back-to-form")) {
+            showEntryForm(app); // Return to the form from the journal entries screen
         }
     });
 }
