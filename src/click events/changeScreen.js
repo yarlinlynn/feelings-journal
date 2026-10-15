@@ -7,6 +7,7 @@ import { journalEntriesScreen } from "../screens/journalEntriesScreen.js";
 import { render } from "../utils/renderScreen.js";
 import { changeScreenBackground } from "./changeBackground.js";
 import { initEntryForm } from "../utils/entryForm.js";
+import { deleteEntry } from "../utils/entries.js";
 
 // Display the journal entries screen after a successful save
 export function showJournalEntries(app) {
@@ -25,16 +26,47 @@ export function showEntryForm(app) {
 // Handle navigation to the entry form
 export function changeScreenClick(app) {
     app.addEventListener("click", (event) => {
-        if(event.target.matches("#newEntry")) {
-            render(app, EntryFormScreen);
-            initEntryForm( () => showJournalEntries(app)); // Pass a callback to navigate after saving
-            changeScreenBackground(); // Initialize the emotion button background effects
+        const target = event.target; // Find the clicked element safely
+        if (!(target instanceof Element)) return;
 
-            window.location.hash = "entryForm";
-            console.log("new screen");
+        // Handle Delete entry buttons in either layout.
+        const deleteButton = target.closest(".delete-entry");
+
+        if (deleteButton && app.contains(deleteButton)) {
+            const entryId = deleteButton.dataset.entryId;
+            if (!entryId) {
+                console.error("Cannot delete entry: missing entry ID.");
+                return;
+            }
+
+            // Confirm before permanently deleting the entry.
+            const confirmed = window.confirm("Are you sure you want to delete this journal entry?");
+            if (!confirmed) return;
+
+            try {
+               const deleted = deleteEntry(entryId); // Delete the selected entry from localStorage
+               if (!deleted) {
+                    console.warn("Journal entry was not found.");
+                    return;
+                }
+                
+                showJournalEntries(app); // Refresh the journal to display remaining entries.
+            } catch(error) {
+                console.error("Failed to delete journal entry:", error);
+                window.alert("Unable to delete this entry. Please try again.");
+            }
+            return;
         }
-        if(event.target.matches("#back-to-form")) {
-            showEntryForm(app); // Return to the form from the journal entries screen
+
+        // Open the entry form from the landing screen.
+        if (target.closest("#newEntry")) {
+            showEntryForm(app);
+            return;
+        }
+
+        // Return to the form from the journal screen.
+        if (target.closest("#back-to-form")) {
+            showEntryForm(app);
         }
     });
 }
