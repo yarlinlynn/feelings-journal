@@ -20,17 +20,31 @@ export function desktopEntries(entries) {
                         ` : ""}
 
                         <h2 class="text-xl font-semibold text-black">
-                            ${entry.emotion}
+                            ${entry.title || ""}
                         </h2>
                     </div>
 
-                    <p class="mt-3 whitespace-pre-wrap">
+                    <p class="mt-3">
+                        ${entry.emotion}
+                    </p>
+
+                    <p class="mt-3">
                         ${entry.thoughts}
                     </p>
 
                     <time datetime="${entry.date}" class="block mt-3 text-sm">
                         ${new Date(entry.date).toLocaleDateString()}
                     </time>
+
+                    <!-- Delete only this journal entry. -->
+                    <button
+                        type="button"
+                        class="delete-entry mt-5 px-4 py-2 rounded-full bg-white text-red-700 font-semibold"
+                        data-entry-id="${entry.id}"
+                        aria-label="Delete entry: ${entry.title || "Untitled entry"}"
+                    >
+                        Delete entry
+                    </button>
                 </article>
             `).join("")}
         </div>
