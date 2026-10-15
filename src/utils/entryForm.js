@@ -1,35 +1,6 @@
 
 import { saveEntry } from "./entries.js";
 
-// export function initEntryForm() {
-//     const savedText = document.querySelector("#dailyThoughts");
-//     const buttons = document.querySelectorAll(".emotion-btn");
-
-//     // Restore and save textarea value
-//     if(savedText) {
-//         savedText.value = sessionStorage.getItem("dailyThoughts") || "";
-//         savedText.addEventListener("input", () => {
-//             sessionStorage.setItem("dailyThoughts", savedText.value);
-//         });
-
-//         // Restore selected emotion button
-//         const savedSelectedButton = sessionStorage.getItem("savedSelectedButton");
-//         buttons.forEach( (button) => {
-//             const isSelected = button.getAttribute("aria-label") === savedSelectedButton;
-//             button.classList.toggle("selected", isSelected);
-//             button.setAttribute("aria-pressed", String(isSelected));
-//         });
-
-//         // Restore background color
-//         const selectedButton = document.querySelector(".emotion-btn.selected");
-//         const formScreen = document.querySelector("#form-screen");
-//         if(formScreen) {
-//             formScreen.style.backgroundColor = selectedButton?.dataset.color || "#a89bd1";
-//         }
-
-//     }
-// }
-
 export function initEntryForm(entrySaved) {
     const form = document.querySelector("#entryForm");
     const savedText = document.querySelector("#dailyThoughts");
@@ -71,9 +42,10 @@ export function initEntryForm(entrySaved) {
 
     form.addEventListener("submit", (event) => {
         event.preventDefault();
-        const selectedButton = form.querySelector(".emotion-btn.selected" );
+        const selectedButton = form.querySelector(".emotion-btn.selected");
         const emotion = selectedButton?.getAttribute("aria-label");
         const thoughts = savedText.value.trim();
+        const emotionImage = selectedButton?.querySelector("img")?.getAttribute("src");
 
         // Show or hide validation messages based on current values.
         emotionError.hidden = Boolean(emotion);
@@ -97,6 +69,7 @@ export function initEntryForm(entrySaved) {
                 emotion,
                 color: selectedButton.dataset.color,
                 thoughts,
+                emotionImage
             });
 
             // Clear the unfinished form state after saving.

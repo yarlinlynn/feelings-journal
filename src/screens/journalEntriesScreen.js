@@ -18,6 +18,11 @@ export function journalEntriesScreen() {
                             <h2 class="text-xl font-semibold text-black">
                                 ${entry.emotion}
                             </h2>
+                            <img
+                                src="${entry.emotionImage}"
+                                alt="${entry.emotion}"
+                                class="w-16 h-16 object-contain"
+                            />
                             <p class="mt-3 whitespace-pre-wrap">${entry.thoughts}</p>
                             <time>${new Date(entry.date).toLocaleDateString()}</time>
                         </article>
