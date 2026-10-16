@@ -36,15 +36,7 @@ export function mobileEntries(entries) {
                         ${new Date(entry.date).toLocaleDateString()}
                     </time>
 
-                    <!-- Delete only this journal entry. -->
-                    <button
-                        type="button"
-                        class="delete-entry mt-4 px-4 py-2 rounded-full bg-white text-red-700 font-semibold"
-                        data-entry-id="${entry.id}"
-                        aria-label="Delete entry: ${entry.title || "Untitled entry"}"
-                    >
-                        Delete entry
-                    </button>
+                    
                 </article>
             `).join("")}
         </div>
