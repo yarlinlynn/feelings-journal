@@ -18,7 +18,7 @@ export function showJournalEntries(app) {
 // Display the entry form and initialize its functionality
 export function showEntryForm(app) {
     render(app, EntryFormScreen)
-    initEntryForm( () => showEntryForm(app)); // Navigate to the entries screen after a successful save
+    initEntryForm( () => showJournalEntries(app)); // Navigate to the entries screen after a successful save
     changeScreenBackground(); // Initialize the emotion button background effects
     window.location.hash = "entryForm";
 }
@@ -26,16 +26,15 @@ export function showEntryForm(app) {
 // Handle navigation to the entry form
 export function changeScreenClick(app) {
     app.addEventListener("click", (event) => {
-        if(event.target.matches("#newEntry")) {
-            render(app, EntryFormScreen);
-            initEntryForm( () => showJournalEntries(app)); // Pass a callback to navigate after saving
-            changeScreenBackground(); // Initialize the emotion button background effects
-            window.location.hash = "entryForm";
-            console.log("new screen");
+        const target = event.target;
+        // Open the entry form. 
+        if (target.closest("#newEntry")) { 
+            showEntryForm(app); 
+            return; 
         }
-
-        if(event.target.matches("#back-to-form")) {
-            showEntryForm(app); // Return to the form from the journal entries screen
+        // Return to the entry form from the journal entries screen. 
+        if (target.closest("#back-to-form")) { 
+            showEntryForm(app); 
         }
     });
 }
