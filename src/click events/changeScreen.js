@@ -1,7 +1,7 @@
 
 // import different screen components
 import { EntryFormScreen } from "../screens/entryFormScreen.js";
-import { journalEntriesScreen } from "../screens/journalEntriesScreen.js";
+import { journalEntriesScreen, initializeJournalEntriesScreen } from "../screens/journalEntriesScreen.js";
 
 // import functionality files
 import { render } from "../utils/renderScreen.js";
@@ -12,6 +12,9 @@ import { initEntryForm } from "../utils/entryForm.js";
 // Display the journal entries screen after a successful save
 export function showJournalEntries(app) {
     render(app, journalEntriesScreen);
+
+    // Initialize the desktop Back and Next buttons after rendering
+    initializeJournalEntriesScreen();
     window.location.hash = "journalEntries"; // Update the URL hash to reflect the current screen
 } 
 
