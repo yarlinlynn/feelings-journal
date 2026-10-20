@@ -10,26 +10,16 @@ export function journalEntryForm() {
     return `
         <form id="entryForm" class="flex flex-col gap-6 md:gap-10">
             <fieldset>
-                <legend class="text-[2rem] mt-0 mx-auto mb-6 text-white">
+                <legend id="emotionLegend" class="text-[2rem] mt-0 mx-auto mb-6 text-white">
                     Select emotion button
                 </legend>
 
                 <!-- Provides additional instructions for screen readers. -->
-                <legend class="sr-only"> Select from the below emotions how you felt today</legend>
+                <p class="sr-only"> Select from the below emotions how you felt today</p>
             
                 <div class="flex flex-wrap justify-center gap-4">
                     ${emotionButtons()}
                 </div>
-
-                <!-- Validation message to ensure button is selected before submittion -->
-                <p
-                    id="emotionError"
-                    class="validation-error text-red-700 mt-3 text-2xl"
-                    role="alert"
-                    hidden
-                >
-                    Please select an emotion.
-                </p>
                                 
             </fieldset>
 
@@ -43,19 +33,10 @@ export function journalEntryForm() {
                     id="entryTitle"
                     name="entryTitle"
                     placeholder="Give your entry a title..."
-                    maxlength="100"
+                    maxlength="100" 
                     class="w-full p-3 rounded-lg bg-white"
                     aria-describedby="titleError"
                 />
-
-                <p
-                    id="titleError"
-                    class="validation-error text-red-700 mt-3"
-                    role="alert"
-                    hidden
-                >
-                    Please add a title for your entry.
-                </p>
             </fieldset>
 
             <fieldset class="">
@@ -67,6 +48,7 @@ export function journalEntryForm() {
                     name="dailyThoughts"
                     id="dailyThoughts"
                     rows="8" cols="48"
+                    maxlength="200"
                     placeholder="Write about what influenced your feelings today..."
                     aria-describedby="dailyThoughtsHint thoughtsError"
                     class="w-full p-3 rounded-lg"
@@ -74,15 +56,6 @@ export function journalEntryForm() {
 
                 <p id="dailyThoughtsHint" class="sr-only">
                     Write about what influenced your feelings today.
-                </p>
-
-                <p
-                    id="thoughtsError"
-                    class="validation-error text-red-700 mt-3 text-2xl"
-                    role="alert"
-                    hidden
-                >
-                    Please write your thoughts before entry can be saved.
                 </p>
             </fieldset>
 
@@ -92,6 +65,6 @@ export function journalEntryForm() {
             >
                 Save entry
             </button>
-        </div>
+        </form>
     `;
 }
