@@ -1,5 +1,7 @@
 import { renderEntries } from "./renderEntries.js";
 
+import pageTurnSound from "../sounds/turn-page.wav";
+
 const journalBackground = "https://framerusercontent.com/images/sUSpuETVmlGNlF7FTDGlVS5HFpI.png?width=1888&height=971";
 
 // Render two entries on the current journal background image
@@ -71,6 +73,20 @@ export function initializeDesktopEntries(entries) {
     const totalPages = Math.ceil(sortEntries.length / 2); 
     let currentPage = totalPages - 1; // Start on the newest entry 
 
+    // Prepare the page-turn sound effect.
+    const pageTurnAudio = new Audio(pageTurnSound);
+    pageTurnAudio.volume = 0.35;
+
+    // Play the sound when the journal spread changes.
+    function playPageTurnSound() {
+        pageTurnAudio.pause();
+        pageTurnAudio.currentTime = 0;
+
+        pageTurnAudio.play().catch((error) => {
+            console.warn("Page-turn sound could not play:", error);
+        });
+    }
+
     // Update the displayed entries and navigation button states
     function updatePageEntry() {
         entryPages.innerHTML = renderTwoEnteriesPerPage(sortEntries, currentPage);
@@ -87,18 +103,18 @@ export function initializeDesktopEntries(entries) {
     previousEntry.addEventListener("click", () => { 
         if (currentPage > 0) { 
             currentPage--; 
+            playPageTurnSound();
             updatePageEntry(); 
         } 
     });
-    //previousEntry.addEventListener("click", () => { if (currentPage < totalPages - 1) { currentPage++; updatePageEntry(); } });
 
     nextEntry.addEventListener("click", () => { 
         if (currentPage < totalPages - 1) { 
             currentPage++; 
+            playPageTurnSound();
             updatePageEntry(); 
         } 
     });
-    //nextEntry.addEventListener("click", () => { if (currentPage > 0) { currentPage--; updatePageEntry(); } });
 
     // Set the correct initial button states. 
     updatePageEntry();
