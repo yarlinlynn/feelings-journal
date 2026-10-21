@@ -1,7 +1,10 @@
+// COMPONENTS:  
 import { renderEntries } from "./renderEntries.js";
 
+// SOUND:
 import pageTurnSound from "../sounds/turn-page.wav";
 
+// IMAGES:
 const journalBackground = "https://framerusercontent.com/images/sUSpuETVmlGNlF7FTDGlVS5HFpI.png?width=1888&height=971";
 
 // Render two entries on the current journal background image
@@ -11,11 +14,23 @@ function renderTwoEnteriesPerPage(entries, pageIndex) {
 
     return `
         <div class="grid grid-cols-[repeat(2,minmax(0,500px))] gap-16 p-8 md:p-12" style="min-height: 620px;">
+            <!-- Previous page button: left side -->
+            <button type="button" aria-label="Previous journal page"
+                data-page-direction="previous"
+                class="absolute inset-y-0 left-0 z-10 w-1/2 cursor-pointer bg-transparent"
+            ></button>
+
             ${pageEntries.map( (entry, index) => `
                 <div class="min-w-0 ${index === 0 ? "ml-16 w-[90%]" : "mr-12 w-[85%]"}">
                     ${renderEntries(entry)}
                 </div>
             `).join("")}
+
+            <!-- Next page button: right side -->
+            <button type="button" aria-label="Next journal page"
+                data-page-direction="next"
+                class="absolute inset-y-0 right-0 z-10 w-1/2 cursor-pointer bg-transparent"
+            ></button>
         </div>
     `;
 }
@@ -28,7 +43,6 @@ export function desktopEntries(entries) {
 
     // Sort entries from newest to oldest without modifying the original array
     const sortEntries = [...entries].sort( (a, b) => new Date(a.date) - new Date(b.date) );
-
     const totalPages = Math.ceil(sortEntries.length / 2);
 
     return `
@@ -38,23 +52,8 @@ export function desktopEntries(entries) {
             <div class="bg-center bg-no-repeat bg-cover rounded-lg overflow-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5" 
                 style="background-image: url('${journalBackground}'); background-size: 100% 100%;"
             >
-                <div id="entryPages">${renderTwoEnteriesPerPage(sortEntries, 0)}</div>
+                <div id="entryPages">${renderTwoEnteriesPerPage(sortEntries, totalPages - 1)}</div>
             </div>
-
-            <!-- Controls for navigating between journal "pages" -->
-            <nav aria-label="Journal page navigation" class="absolute bottom-28 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-between w-3/6">
-                <button id="previousEntry" type="button"
-                    class="" ${totalPages <= 1 ? "disabled" : ""}
-                >
-                    ← Back
-                </button>
-
-                <button id="nextEntry" type="button"
-                    class="disabled"
-                >
-                    Next →
-                </button>
-            </nav>
         </section>
     `;
 }
@@ -65,8 +64,6 @@ export function initializeDesktopEntries(entries) {
     if (!container || !entries || entries.length === 0) return;
 
     const entryPages = container.querySelector("#entryPages");
-    const previousEntry = container.querySelector("#previousEntry"); 
-    const nextEntry = container.querySelector("#nextEntry");
 
     // Always show the newest entries on the first "page"
     const sortEntries = [...entries].sort( (a, b) => new Date(a.date) - new Date(b.date) );
@@ -90,32 +87,27 @@ export function initializeDesktopEntries(entries) {
     // Update the displayed entries and navigation button states
     function updatePageEntry() {
         entryPages.innerHTML = renderTwoEnteriesPerPage(sortEntries, currentPage);
-
-        // Flips page to older entries
-        previousEntry.disabled = currentPage === 0;
-        // previousEntry.disabled = currentPage >= totalPages - 1;
-
-        // Flips page to newer entries
-        nextEntry.disabled = currentPage >= totalPages - 1;
-        //nextEntry.disabled = currentPage <= 0;
     }
 
-    previousEntry.addEventListener("click", () => { 
-        if (currentPage > 0) { 
-            currentPage--; 
-            playPageTurnSound();
-            updatePageEntry(); 
-        } 
+    function changePage(direction) {
+        if(direction === "previous" && currentPage > 0) {
+            currentPage--;
+        } else if(direction === "next" && currentPage < totalPages - 1) {
+            currentPage++;
+        } else {
+            return;
+        }
+
+        playPageTurnSound();
+        updatePageEntry();
+    }
+
+    entryPages.addEventListener("click", (event) => {
+        const flipPage = event.target.closest("[data-page-direction]");
+        if(!flipPage) return;
+        changePage(flipPage.dataset.pageDirection)
     });
 
-    nextEntry.addEventListener("click", () => { 
-        if (currentPage < totalPages - 1) { 
-            currentPage++; 
-            playPageTurnSound();
-            updatePageEntry(); 
-        } 
-    });
-
-    // Set the correct initial button states. 
+    // Render the initial spread.
     updatePageEntry();
 }
