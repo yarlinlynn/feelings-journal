@@ -4,6 +4,9 @@ import { renderEntries } from "./renderEntries.js";
 // SOUND:
 import pageTurnSound from "../sounds/turn-page.wav";
 
+// Functionality:
+import { initPageNavigation } from "../utils/journalPageNavigation.js";
+
 // IMAGES:
 const journalBackground = "https://framerusercontent.com/images/sUSpuETVmlGNlF7FTDGlVS5HFpI.png?width=1888&height=971";
 
@@ -13,7 +16,9 @@ function renderTwoEnteriesPerPage(entries, pageIndex) {
     const pageEntries = entries.slice(startIndex, startIndex + 2);
 
     return `
-        <div class="grid grid-cols-[repeat(2,minmax(0,500px))] gap-16 p-8 md:p-12" style="min-height: 620px;">
+        <div class="grid grid-cols-[repeat(2,minmax(0,500px))] gap-16 p-8 md:p-12 bg-no-repeat overflow-hidden w-full" 
+            style="background-image: url('${journalBackground}'); background-size: 100% 100%; min-height: 620px;"
+        >
             <!-- Previous page button: left side -->
             <button type="button" aria-label="Previous journal page"
                 data-page-direction="previous"
@@ -46,68 +51,19 @@ export function desktopEntries(entries) {
     const totalPages = Math.ceil(sortEntries.length / 2);
 
     return `
-        <section id="desktopEntries" class="w-full max-w-6xl mx-auto">
-
-            <!-- Journal background with two entries per page. -->
-            <div class="bg-center bg-no-repeat bg-cover rounded-lg overflow-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5" 
-                style="background-image: url('${journalBackground}'); background-size: 100% 100%;"
-            >
-                <div id="entryPages">${renderTwoEnteriesPerPage(sortEntries, totalPages - 1)}</div>
-            </div>
+        <section id="desktopEntries" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-6xl mx-auto">
+            <div id="entryPages">${renderTwoEnteriesPerPage(sortEntries, totalPages - 1)}</div>
         </section>
     `;
 }
 
 // Attach navigation behaviour after the desktop markup has been added to the DOM
 export function initializeDesktopEntries(entries) {
-    const container = document.querySelector("#desktopEntries");
-    if (!container || !entries || entries.length === 0) return;
-
-    const entryPages = container.querySelector("#entryPages");
-
-    // Always show the newest entries on the first "page"
-    const sortEntries = [...entries].sort( (a, b) => new Date(a.date) - new Date(b.date) );
-    const totalPages = Math.ceil(sortEntries.length / 2); 
-    let currentPage = totalPages - 1; // Start on the newest entry 
-
-    // Prepare the page-turn sound effect.
-    const pageTurnAudio = new Audio(pageTurnSound);
-    pageTurnAudio.volume = 0.35;
-
-    // Play the sound when the journal spread changes.
-    function playPageTurnSound() {
-        pageTurnAudio.pause();
-        pageTurnAudio.currentTime = 0;
-
-        pageTurnAudio.play().catch((error) => {
-            console.warn("Page-turn sound could not play:", error);
-        });
-    }
-
-    // Update the displayed entries and navigation button states
-    function updatePageEntry() {
-        entryPages.innerHTML = renderTwoEnteriesPerPage(sortEntries, currentPage);
-    }
-
-    function changePage(direction) {
-        if(direction === "previous" && currentPage > 0) {
-            currentPage--;
-        } else if(direction === "next" && currentPage < totalPages - 1) {
-            currentPage++;
-        } else {
-            return;
-        }
-
-        playPageTurnSound();
-        updatePageEntry();
-    }
-
-    entryPages.addEventListener("click", (event) => {
-        const flipPage = event.target.closest("[data-page-direction]");
-        if(!flipPage) return;
-        changePage(flipPage.dataset.pageDirection)
-    });
-
-    // Render the initial spread.
-    updatePageEntry();
+    return initPageNavigation( {
+        container: document.querySelector("#desktopEntries"),
+        entries,
+        entriesPerPage: 2,
+        renderPage: renderTwoEnteriesPerPage,
+        pageTurnSound,
+    })
 }
