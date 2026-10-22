@@ -2,7 +2,7 @@
 import { getEntries } from "../utils/entries.js";
 
 // import either mobile or deskop screen content
-import { mobileEntries } from "../components/mobileEntries.js";
+import { mobileEntries, initializeMobileEntries } from "../components/mobileEntries.js";
 import { desktopEntries, initializeDesktopEntries } from "../components/desktopEntries.js";
 
 export function journalEntriesScreen() {
@@ -35,8 +35,14 @@ export function journalEntriesScreen() {
 
 // Call this after the screen HTML has been inserted into the DOM. 
 export function initializeJournalEntriesScreen() { 
-    const isMobile = window.innerWidth < 500; 
-    if (!isMobile) { 
-        initializeDesktopEntries(getEntries()); 
-    } 
+    // const isMobile = window.innerWidth < 500; 
+    // if (!isMobile) { 
+    //     initializeDesktopEntries(getEntries()); 
+    // } 
+    const entries = getEntries();
+    if (window.innerWidth < 800) {
+        return initializeMobileEntries(entries);
+    }
+
+    return initializeDesktopEntries(entries);
 }
