@@ -10,14 +10,14 @@ export function journalEntryForm() {
     return `
         <form id="entryForm" class="flex flex-col gap-6 md:gap-10">
             <fieldset>
-                <legend id="emotionLegend" class="text-[2rem] mt-0 mx-auto mb-6 text-white">
+                <legend id="emotionLegend" class="text-[2rem] mx-auto mb-4 md:mb-6 text-white">
                     Select emotion button
                 </legend>
 
                 <!-- Provides additional instructions for screen readers. -->
                 <p class="sr-only"> Select from the below emotions how you felt today</p>
             
-                <div class="flex flex-wrap justify-center gap-4">
+                <div class="flex flex-wrap justify-center gap-4 text-sm">
                     ${emotionButtons()}
                 </div>
                                 
@@ -47,11 +47,10 @@ export function journalEntryForm() {
                 <textarea
                     name="dailyThoughts"
                     id="dailyThoughts"
-                    rows="8" cols="48"
-                    maxlength="200"
+                    cols="48" maxlength="10000"
                     placeholder="Write about what influenced your feelings today..."
                     aria-describedby="dailyThoughtsHint thoughtsError"
-                    class="w-full p-3 rounded-lg"
+                    class="w-full p-3 rounded-lg h-[32vh] md:h-[25vh]"
                 ></textarea>
 
                 <p id="dailyThoughtsHint" class="sr-only">
