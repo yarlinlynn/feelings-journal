@@ -67,4 +67,21 @@
     textarea:focus, button:focus {
         outline: #a89bd1;
     }
+
+    .journal-background {
+        background-image: url('https://framerusercontent.com/images/sUSpuETVmlGNlF7FTDGlVS5HFpI.png?width=1888&height=971');
+        background-repeat: no-repeat;
+        background-size: 890px 100%;
+        background-position: -405px center;
+        min-height: 450px;
+    }
+
+    /* Tablet screens */
+    @media (min-width: 700px) and (max-width: 1000px) {
+        .journal-background {
+            background-size: 1500px 100%;
+            min-height: 750px;
+            background-position: -620px center;
+        }
+    }
 }
