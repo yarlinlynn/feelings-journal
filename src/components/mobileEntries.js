@@ -17,7 +17,7 @@ function renderSingleEntryPerPage(entries, pageIndex) {
         ></button>
 
         <!-- Single entry -->
-        <div class="min-w-0 relative">
+        <div class="min-w-0 relative bg-[#fffaf0] h-[80vh] md:h-[50vh]">
             ${renderEntries(entry)} 
         </div>
 
@@ -36,7 +36,7 @@ export function mobileEntries(entries) {
 
     return `
         <section id="mobileEntries" 
-            class="journal-background w-full max-w-6xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            class="flex items-center justify-center h-full"
         >
         </section>
     `
