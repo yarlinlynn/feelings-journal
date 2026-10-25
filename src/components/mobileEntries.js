@@ -1,4 +1,4 @@
-import { renderEntries } from "./renderEntries.js";
+//import { renderEntries } from "./renderEntries.js";
 
 import { initPageNavigation } from "../utils/journalPageNavigation.js";
 
@@ -17,8 +17,20 @@ function renderSingleEntryPerPage(entries, pageIndex) {
         ></button>
 
         <!-- Single entry -->
-        <div class="min-w-0 relative bg-[#fffaf0] h-[80vh] md:h-[50vh]">
-            ${renderEntries(entry)} 
+        <div class="w-80 absolute bg-[#fffaf0] h-[80vh] md:h-[50vh]">
+            <article id="${entry.id}" class="flex flex-col items-center justify-evenly h-full">
+                <div style="style="background-color: ${entry.color}">
+                    <img src="${entry.emotionImage}"
+                        alt="${entry.emotion}"
+                        class="w-12 h-12 object-contain"
+                        style="style="background-color: ${entry.color}""
+                    />
+                    <time datetime="${entry.date}">${new Date(entry.date).toLocaleDateString()}</time>
+                    <h2 class="text-xl text-black font-semibold">${entry.title || ""}</h2>
+                </div>
+                
+                <p class="whitespace-pre-wrap break-words">${entry.thoughts}</p>
+            </article>
         </div>
 
         <!-- Next page button: right side -->
