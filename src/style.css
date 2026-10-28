@@ -76,12 +76,36 @@
         min-height: 450px;
     }
 
+    .entry {
+        position: relative;
+        left: 20%;
+        transform: translate(-19%, 10%);
+        width: 280px;
+        height: 78%;
+    }
+
+    @media (min-width: 320px) {
+        .journal-background {
+            background-size: 890px 100%;
+            background-position: -450px center;
+        }
+
+    }
+
     /* Tablet screens */
     @media (min-width: 700px) and (max-width: 1000px) {
         .journal-background {
-            background-size: 1500px 100%;
-            min-height: 750px;
-            background-position: -620px center;
+            background-size: 1000px 100%;
+            min-height: 550px;
+            background-position: -320px center;
+        }
+
+        .entry {           
+            width: 310px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-55%, -50%);
+            
         }
     }
 }

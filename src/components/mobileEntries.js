@@ -1,4 +1,4 @@
-//import { renderEntries } from "./renderEntries.js";
+import { renderEntries } from "./renderEntries.js";
 
 import { initPageNavigation } from "../utils/journalPageNavigation.js";
 
@@ -10,34 +10,33 @@ function renderSingleEntryPerPage(entries, pageIndex) {
 
     return `
 
-        <!-- Previous page button: left side -->
-        <button type="button" aria-label="Previous journal page"
-            data-page-direction="previous"
-            class="absolute inset-y-0 left-0 z-10 w-1/2 cursor-pointer bg-transparent"
-        ></button>
-
         <!-- Single entry -->
-        <div class="w-80 absolute bg-[#fffaf0] h-[80vh] md:h-[50vh]">
-            <article id="${entry.id}" class="flex flex-col items-center justify-evenly h-full">
-                <div style="style="background-color: ${entry.color}">
-                    <img src="${entry.emotionImage}"
-                        alt="${entry.emotion}"
-                        class="w-12 h-12 object-contain"
-                        style="style="background-color: ${entry.color}""
-                    />
-                    <time datetime="${entry.date}">${new Date(entry.date).toLocaleDateString()}</time>
-                    <h2 class="text-xl text-black font-semibold">${entry.title || ""}</h2>
-                </div>
-                
-                <p class="whitespace-pre-wrap break-words">${entry.thoughts}</p>
-            </article>
+        <div class="absolute inset-0 flex flex-col">
+            ${renderEntries(entry)}
         </div>
 
-        <!-- Next page button: right side -->
-        <button type="button" aria-label="Next journal page"
-            data-page-direction="next"
-            class="absolute inset-y-0 right-0 z-10 w-1/2 cursor-pointer bg-transparent"
-        ></button>
+        <div class="absolute bottom-6 left-4 md:left-50 flex items-center gap-2 entry-btn">
+            <!-- Previous button (bottom left) -->
+            <button type="button" 
+                    aria-label="Previous journal page"
+                    data-page-direction="previous"
+                    class="z-20 rounded-full bg-white/80 shadow-md active:scale-95 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#000000">
+                    <path d="M560-280 360-480l200-200v400Z"/>
+                </svg>
+            </button>
+
+            <!-- Next button (bottom right) -->
+            <button type="button" 
+                    aria-label="Next journal page"
+                    data-page-direction="next"
+                    class="z-20 rounded-full bg-white/80 shadow-md active:scale-95 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#000000">
+                    <path d="M400-280v-400l200 200-200 200Z"/>
+                </svg>
+            </button>
+        <div>
+
     `;
 }
 
@@ -48,7 +47,7 @@ export function mobileEntries(entries) {
 
     return `
         <section id="mobileEntries" 
-            class="flex items-center justify-center h-full"
+            class="journal-background w-full max-w-6xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
         >
         </section>
     `
