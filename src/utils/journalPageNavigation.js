@@ -2,12 +2,12 @@
 // Audio:
 import pageTurnSound from "../sounds/turn-page.wav";
 
-export function initPageNavigation( {container, entries, entriesPerPage, renderPage }) {
+export function initPageNavigation( {container, entries, entriesPerPage = 1, renderPage }) {
     if (!container || !entries || entries.length === 0) return;
 
     // Always show the newest entries on the first "page"
     const sortEntries = [...entries].sort( (a, b) => new Date(a.date) - new Date(b.date) );
-    const totalPages = Math.ceil(sortEntries.length / 2); 
+    const totalPages = Math.ceil(sortEntries.length / entriesPerPage); 
     let currentPage = totalPages - 1; // Start on the newest entry 
 
     const audio = new Audio(pageTurnSound);
