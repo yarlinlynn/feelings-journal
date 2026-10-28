@@ -81,7 +81,8 @@
         left: 20%;
         transform: translate(-19%, 10%);
         width: 280px;
-        height: 78%;
+        height: 420px;
+        max-height: 60vh
     }
 
     @media (min-width: 320px) {
@@ -106,6 +107,13 @@
             top: 50%;
             transform: translate(-55%, -50%);
             
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .entry {
+            transform: translate(-25%, -1%);
+            width: 350px;
         }
     }
 }

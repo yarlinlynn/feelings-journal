@@ -17,7 +17,7 @@ function renderTwoEnteriesPerPage(entries, pageIndex) {
 
     return `
         <div class="grid grid-cols-[repeat(2,minmax(0,500px))] gap-16 p-8 md:p-12 bg-no-repeat overflow-hidden w-full" 
-            style="background-image: url('${journalBackground}'); background-size: 100% 100%; min-height: 620px;"
+            style="background-image: url('${journalBackground}'); background-size: 100% 100%; height: 620px;"
         >
             <!-- Previous page button: left side -->
             <button type="button" aria-label="Previous journal page"
