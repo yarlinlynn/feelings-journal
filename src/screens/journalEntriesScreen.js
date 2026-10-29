@@ -22,12 +22,13 @@ export function journalEntriesScreen() {
             <!-- Only the entries layout changes. -->
                 ${entriesContent}
 
-            <!-- Navigate back to the entry form. 
+            <!-- Navigate back to the entry form. -->
             <button id="back-to-form" type="button"
-                class="text-base font-semibold px-6 py-3 bg-white text-[#222222] rounded-full shadow mt-4 mb-8 absolute -bottom-7 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                class="text-base font-semibold px-2 py-2 bg-white text-[#222222] rounded-full shadow mt-4 mb-8 absolute top-7 right-5 flex gap-1 items-center justify-center text-3xl"
             >
-                Add Another Entry
-            </button>-->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
+                <span class="hidden md:block">Add Another Entry</span>
+            </button>
         </section>
     `;
 }
