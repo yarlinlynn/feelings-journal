@@ -15,7 +15,7 @@ function renderSingleEntryPerPage(entries, pageIndex) {
             ${renderEntries(entry)}
         </div>
 
-        <div class="absolute bottom-6 left-4 md:left-50 flex items-center gap-2 entry-btn">
+        <div class="absolute -bottom-5 left-4 md:left-50 flex items-center gap-2 entry-btn">
             <!-- Previous button (bottom left) -->
             <button type="button" 
                     aria-label="Previous journal page"

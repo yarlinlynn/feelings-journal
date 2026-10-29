@@ -11,10 +11,12 @@ export function renderEntries(entry) {
                 </h2>
 
                 <div class="flex items-center justify-between gap-3 relative">
-                    <span class="text-sm font-medium">Today I felt ${entry.emotion}</span>
+                    <span class="text-sm font-medium">Today I felt 
+                        <span class="ml-1" style="color: ${entry.color}">${entry.emotion}</span>
+                    </span>
                     ${entry.emotionImage ? `
                         <div class="absolute left-[1.5rem] top-[1.5rem] w-12 h-12 flex items-center justify-center">
-                            <svg class="absolute inset-0 w-full h-full overflow-visible" viewBox="0 0 64 60">
+                            <svg class="absolute inset-0 w-full h-full overflow-visible opacity-50" viewBox="0 0 64 60">
                                 <!-- Main cloud -->
                                 <path d="M20 38c-8 0-14-6-14-13s6-13 14-13c1.5-6 7-10 13-10 7 0 12.5 4.5 14 11 6 1 11 6 11 12 0 7-6 13-13 13H20z" 
                                     style="fill: ${entry.color}" />
@@ -26,7 +28,7 @@ export function renderEntries(entry) {
 
                             <img src="${entry.emotionImage}"
                                 alt="${entry.emotion}"
-                                class="relative z-10 w-5 h-5 object-contain mt-[-8px]"
+                                class="relative z-10 w-5 h-5 object-contain  -mt-3"
                             />
                         </div>
                     ` : ""}

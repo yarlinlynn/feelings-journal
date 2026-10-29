@@ -22,7 +22,7 @@ function renderTwoEnteriesPerPage(entries, pageIndex) {
             <!-- Previous page button: left side -->
             <button type="button" aria-label="Previous journal page"
                 data-page-direction="previous"
-                class="absolute inset-y-0 left-0 z-10 w-1/2 cursor-pointer bg-transparent"
+                class="absolute inset-y-0 left-0 z-10 w-40 cursor-pointer bg-transparent"
             ></button>
 
             ${pageEntries.map( (entry, index) => `
@@ -34,7 +34,7 @@ function renderTwoEnteriesPerPage(entries, pageIndex) {
             <!-- Next page button: right side -->
             <button type="button" aria-label="Next journal page"
                 data-page-direction="next"
-                class="absolute inset-y-0 right-0 z-10 w-1/2 cursor-pointer bg-transparent"
+                class="absolute inset-y-0 right-0 z-10 w-55 cursor-pointer bg-transparent"
             ></button>
         </div>
     `;
