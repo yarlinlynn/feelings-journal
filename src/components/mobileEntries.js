@@ -41,8 +41,14 @@ function renderSingleEntryPerPage(entries, pageIndex) {
 }
 
 export function mobileEntries(entries) {
-    if(entries === 0) {
-        return `<p>No entries saved yet.</p>`;
+    if(!entries || entries.length === 0) {
+        return `
+            <div
+            class="journal-background w-full max-w-6xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        >
+            <p class="text-lg text-gray-600 text-center mt-[20%] mr-[3rem]">No entries saved yet.</p>
+        </div>
+        `;
     }
 
     return `

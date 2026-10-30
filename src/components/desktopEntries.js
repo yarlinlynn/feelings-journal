@@ -43,7 +43,13 @@ function renderTwoEnteriesPerPage(entries, pageIndex) {
 export function desktopEntries(entries) {
     // Display a message when the journal contains no entries
     if (!entries || entries.length === 0) {
-        return `<p>No entries saved yet.</p>`;
+        return `
+           <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-8 md:p-12 bg-no-repeat overflow-hidden w-full" 
+                style="background-image: url('${journalBackground}'); background-size: 80% 100%; height: 620px; background-position: center"
+            >
+                <p class="text-lg text-gray-600 mt-[20%] mr-[3rem] absolute top-[-20%] left-[27%]">No entries saved yet.</p>
+            </div> 
+        `;
     }
 
     // Sort entries from newest to oldest without modifying the original array
