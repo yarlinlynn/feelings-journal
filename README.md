@@ -2,13 +2,21 @@
 # Feelings Journal 🌿
 
 A calm and personal journaling web application that lets you capture how you feel, reflect on your day, and revisit past entries whenever you need a moment of reflection. Front-end web application built with vanilla JavaScript components. It provides a soft, reflective space where users can select an emotion, write about their day, and save entries that persist in the browser using `localStorage`. The app is fully responsive and offers different layouts for desktop and mobile.
+
 <br>
 
-<p float="left" >
-  <video src="https://github.com/user-attachments/assets/a1b2c3d4-e5f6-7890-abcd-ef1234567890" controls width="800" height="400"></video>
-  &nbsp;&nbsp;&nbsp;&nbsp;
-   <video src="https://github.com/user-attachments/assets/b2c3d4e5-f6a7-8901-bcde-f12345678901" controls width="200" height="400"></video>
-</p>
+<table border="0" style="border: none; border-collapse: collapse; width: 100%;">
+  <tr>
+    <td style="border: none; padding: 10px; width: 50%; text-align: center;">
+      <!-- Video 1 -->
+      <video  src="https://github.com/user-attachments/assets/60093c48-0d0a-4db1-8947-f0fe3bb4c3af" controls width="100%" muted autoplay loop></video>
+    </td>
+    <td  style="border: none; padding: 10px; width: 50%; text-align: center;">
+      <!-- Video 2 -->
+      <video src="https://github.com/user-attachments/assets/b3584c3b-193e-44f9-8cb6-b42e5df40ef5" controls width="100%" muted autoplay loop></video>
+    </td>
+  </tr>
+</table>
 
 <br>
 
