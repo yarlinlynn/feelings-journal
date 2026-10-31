@@ -1,79 +1,132 @@
 
 # Feelings Journal 🌿
 
-A simple personal feelings journal web application that allows users to record their thoughts, feelings, or experiences and return to previous entries whenever they revisit the website.
+A calm and personal journaling web application that lets you capture how you feel, reflect on your day, and revisit past entries whenever you need a moment of reflection. Front-end web application built with vanilla JavaScript components. It provides a soft, reflective space where users can select an emotion, write about their day, and save entries that persist in the browser using `localStorage`. The app is fully responsive and offers different layouts for desktop and mobile.
+<br>
 
-## 🌱 Project Overview
+<p float="left" >
+  <video src="https://github.com/user-attachments/assets/a1b2c3d4-e5f6-7890-abcd-ef1234567890" controls width="800" height="400"></video>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+   <video src="https://github.com/user-attachments/assets/b2c3d4e5-f6a7-8901-bcde-f12345678901" controls width="200" height="400"></video>
+</p>
 
-**Feelings Journal** is a front-end web application designed to provide a simple and calming space for users to reflect on their day.
+<br>
 
-The application is built around three main screens/components:
+## Features
 
-1. **Loading / Welcome Screen**
+- Three distinct screens with smooth transitions
+- Emotion selection with colorful character buttons
+- Form validation (emotion + title + thoughts required before saving)
+- Entries saved to browser `localStorage`
+- Responsive design for desktop, tablet, and mobile
+- Realistic “page turn” sound when navigating journal pages
+- Support for long entries with smooth scrolling
+- Thoughtful empty state design when no entries exist
+- Built entirely with reusable JavaScript components
+<br>
 
-   * Introduces the application.
-   * Provides a button to begin writing a journal entry.
-   * Clicking the button takes the user to the entry form.
+## Screens
 
-2. **Entry Form Screen**
+#### 1. Welcome / Loading Screen
+A soft, animated introduction that sets the calm tone of the app.  
+Clicking **Add New Entry** takes you to the form.
+<br>
 
-   * Allows the user to enter information about their feelings and experiences using input fields.
-   * When the user clicks the **Save** button, the entered information is collected into an individual JavaScript object.
-   * The object is added to an array containing the user's journal entries.
-   * The entries are then saved to the browser's `localStorage`.
+#### 2. Entry Form Screen
+- Select how you’re feeling using the emotion buttons
+- Give your entry a title
+- Write about what influenced your feelings
+- The **Save** button only works when all required fields are filled (emotion selected, title entered, and text written)
+- Background color changes based on the selected emotion
+<br>
 
-3. **Journal / Entries Screen**
+#### 3. Journal Entries Screen
+- Displays your saved entries in a realistic open journal layout
+- **Desktop / Tablet**: Two entries side-by-side with page navigation
+- **Mobile**: One entry at a time with previous/next controls
+- Long entries can be scrolled to read the full content
+- “Turn page” sound plays when navigating between pages
+- Special design for when no entries have been saved yet
+<br>
 
-   * Retrieves previously saved entries from `localStorage`.
-   * Renders the saved journal entries to the DOM.
-   * Allows the user to view their previous entries when they return to the website.
+## Empty State Design
 
-## Data Storage
+When no entries have been saved yet, the journal shows a calm empty state on all screen sizes:
 
-The application uses the browser's **localStorage** API to persist journal entries.
-Each journal entry is represented as an individual JavaScript object and stored as part of an array.
+| Desktop | Tablet | Mobile |
+|---------|--------|--------|
+| ![Desktop empty](public/assets/desktop-no_entries.png) | ![Tablet empty](public/assets/tablet-no_entries.png) | ![Mobile empty](public/assets/mobile-no_entries.png) |
 
-A simplified example of the data structure is:
+*(Replace the image paths above with your actual screenshots)*
 
-```js
-{
-  date: "2026-10-04",
-  feeling: "Happy",
-  entry: "Today was a really good day."
-}
+<br>
+
+## Built With
+
+- **HTML5**
+- **JavaScript** (vanilla) – component-based architecture
+- **Tailwind CSS**
+- **Vite**
+- **Browser localStorage**
+- Custom page-turn sound effect
+
+<br>
+
+## Architecture Highlights
+
+The application is built using reusable JavaScript components/screens:
+
+- `LoadingScreen`
+- `EntryFormScreen`
+- `journalEntriesScreen` (with separate mobile & desktop layouts)
+- Form handling and validation logic
+- Page navigation system with sound
+- `localStorage` utility functions for saving, retrieving, and deleting entries
+
+Screen transitions and background color changes are handled smoothly when moving between views.
+
+<br>
+
+## Data Persistence
+
+All journal entries are stored in the browser’s `localStorage`.
+
+Each entry is saved as an object containing:
+- Unique ID
+- Emotion + emotion image
+- Color
+- Title
+- Thoughts / reflection
+- Timestamp
+
+Entries persist even after closing the browser (on the same device).
+
+<br>
+
+## Project Structure
+
+```text
+feelings-journal/
+├── public/
+├── assets/
+├── images/
+├── src/
+│   ├── animations/
+│   ├── click events/
+│   ├── components/
+│   ├── screens/
+│   ├── sounds/
+│   ├── utils/
+│   ├── main.js
+│   └── style.css
+├── index.html
+├── package.json
+└── README.md
 ```
 
-The array of entries is converted to JSON before being stored in localStorage.
+<br>
 
-When the application loads again, the stored JSON data is retrieved, converted back into JavaScript objects, and rendered to the DOM.
-
-This means journal entries can remain available after the user closes the browser or returns to the website later.
-
-> **Note:** Because the project uses browser localStorage, journal entries are stored locally in the user's browser. They are not stored in a remote database or synced between different devices.
-
-## 🛠️ Technologies Used
-
-* HTML5
-* JavaScript
-* Tailwind CSS
-* Browser localStorage
-* GitHub Pages
-
-## 🧩 JavaScript Components
-
-The application is structured around reusable JavaScript components/screens.
-
-The main functionality includes:
-
-* Switching between screens/components.
-* Collecting user input from form fields.
-* Creating journal entry objects.
-* Adding entries to an array.
-* Saving entries to localStorage.
-* Retrieving saved entries.
-* Rendering journal entries dynamically to the DOM.
-
-## 🎨 Design & Inspiration
+## Design & Inspiration
 
 The design and concept of this project were inspired by the **Daily Feelings** project by **Btelgeuse**:
 
@@ -82,28 +135,9 @@ The design and concept of this project were inspired by the **Daily Feelings** p
 The project was used as inspiration for the overall feelings-journal concept and visual direction, including the use of imagery.
 
 All original code and implementation for **Feelings Journal** is my own work.
-Credit and thanks to **Btelgeuse** for the original inspiration:
+Credit and thanks to **Btelgeuse** for the original inspiration
 
-<br/>
-
-## 📁 Project Structure
-
-The project currently follows a Vite-based structure:
-
-```text
-feelings-journal/
-├── .github/
-│   └── workflows/
-├── images/
-├── public/
-├── src/
-├── index.html
-├── package.json
-├── package-lock.json
-├── vite.config.js
-└── README.md
-```
-
+<br>
 
 ### Running the Project Locally
 
@@ -126,23 +160,8 @@ Start the development server:
 ```bash
 npm run dev
 ```
+<br>
 
-## 🎯 Project Goals
-
-The main goals of this project are to:
-
-* Practice building interactive interfaces with JavaScript.
-* Work with reusable components/screens.
-* Understand DOM manipulation.
-* Practice handling form input.
-* Learn how to create and manage arrays of objects.
-* Use localStorage for client-side data persistence.
-* Render stored data dynamically to the DOM.
-* Build and deploy a front-end application using GitHub Pages.
-* Create a simple and enjoyable user experience for personal reflection.
-
-
-## 📄 License
+### License
 
 This project is open-source and free to use.
-
